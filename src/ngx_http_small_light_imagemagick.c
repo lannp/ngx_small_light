@@ -187,12 +187,13 @@ ngx_int_t ngx_http_small_light_imagemagick_process(ngx_http_request_t *r, ngx_ht
 
     /* crop, scale. */
     if (sz.scale_flg != 0) {
-        p = ngx_snprintf(crop_geo, sizeof(crop_geo) - 1, "%f!x%f!+%f+%f", sz.sw, sz.sh, sz.sx, 427);
+        p = ngx_snprintf(crop_geo, sizeof(crop_geo) - 1, "%f!x%f!+%f+%f", sz.sw, sz.sh, sz.sx, sy);
         *p = '\0';
         p = ngx_snprintf(size_geo, sizeof(size_geo) - 1, "%f!x%f!",       sz.dw, sz.dh);
         *p = '\0';
         ngx_log_error(NGX_LOG_DEBUG, r->connection->log, 0, "crop_geo:%s", crop_geo);
         ngx_log_error(NGX_LOG_DEBUG, r->connection->log, 0, "size_geo:%s", size_geo);
+	MagickResetImagePage(ictx->wand, "+0+0");
         trans_wand = MagickTransformImage(ictx->wand, (char *)crop_geo, (char *)size_geo);
         if (trans_wand == NULL || trans_wand == ictx->wand) {
             r->err_status = NGX_HTTP_INTERNAL_SERVER_ERROR;
