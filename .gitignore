@@ -1,0 +1,11 @@
+config
+GTAGS
+GRTAGS
+GPATH
+GSYMS
+Build
+MANIFEST
+MANIFEST.SKIP.bak
+MYMETA.*
+_build
+t/ngx_base/logs/*.log
