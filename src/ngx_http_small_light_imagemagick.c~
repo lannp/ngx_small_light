@@ -171,7 +171,6 @@ ngx_int_t ngx_http_small_light_imagemagick_process(ngx_http_request_t *r, ngx_ht
         }
 
         DestroyPixelWand(bg_color);
-sy
     /* calc size. */
     iw = (double)MagickGetImageWidth(ictx->wand);
     ih = (double)MagickGetImageHeight(ictx->wand);
