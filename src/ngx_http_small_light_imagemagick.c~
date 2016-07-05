@@ -171,8 +171,7 @@ ngx_int_t ngx_http_small_light_imagemagick_process(ngx_http_request_t *r, ngx_ht
         }
 
         DestroyPixelWand(bg_color);
-    }
-
+sy
     /* calc size. */
     iw = (double)MagickGetImageWidth(ictx->wand);
     ih = (double)MagickGetImageHeight(ictx->wand);
@@ -187,7 +186,7 @@ ngx_int_t ngx_http_small_light_imagemagick_process(ngx_http_request_t *r, ngx_ht
 
     /* crop, scale. */
     if (sz.scale_flg != 0) {
-        p = ngx_snprintf(crop_geo, sizeof(crop_geo) - 1, "%f!x%f!+%f+%f", sz.sw, sz.sh, sz.sx, sy);
+        p = ngx_snprintf(crop_geo, sizeof(crop_geo) - 1, "%f!x%f!+%f+%f", sz.sw, sz.sh, sz.sx, sz.sy);
         *p = '\0';
         p = ngx_snprintf(size_geo, sizeof(size_geo) - 1, "%f!x%f!",       sz.dw, sz.dh);
         *p = '\0';
